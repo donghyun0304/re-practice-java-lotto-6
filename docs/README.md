@@ -49,6 +49,9 @@ Lotto (일급컬렉션)
 WinningLotto (일급컬렉션)
 - 생성자 파라미터로 당첨번호와 보너스 번호를 입력받는다.
 
+BonusNumber
+
+
 RandomNumberGenerator
 - (완료)서로다른 6자리 숫자를 만든다.
 

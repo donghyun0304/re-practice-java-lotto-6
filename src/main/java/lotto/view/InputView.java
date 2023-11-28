@@ -27,6 +27,15 @@ public class InputView {
         });
     }
 
+    public int inputBonusNumber(){
+        return getInput(() -> {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String input = Console.readLine();
+            // 검증로직 추가
+            return Integer.parseInt(input);
+        });
+    }
+
     private <T> T getInput(Supplier<T> inputSupplier){
         while(true){
             try{
