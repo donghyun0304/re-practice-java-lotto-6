@@ -1,7 +1,10 @@
 package lotto.controller;
 
+import lotto.utils.RandomNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class LottoController {
 
@@ -16,5 +19,7 @@ public class LottoController {
     public void run(){
         int price = inputView.inputPrice();
 //        System.out.println("price = " + price);
+        List<Integer> numbers = RandomNumberGenerator.createNumbers();
+        System.out.println(numbers);
     }
 }
