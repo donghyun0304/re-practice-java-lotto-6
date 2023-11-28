@@ -18,4 +18,14 @@ public class BonusNumber {
         return new BonusNumber(bonusNumber);
     }
 
+    public int getNumber() {
+        return number;
+    }
+
+    @Override
+    public String toString() {
+        return "BonusNumber{" +
+                "number=" + number +
+                '}';
+    }
 }
