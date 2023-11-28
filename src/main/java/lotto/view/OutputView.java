@@ -11,6 +11,7 @@ public class OutputView {
 
     public void printLottos(LottosDto lottosDto){
         List<Lotto> lottos = lottosDto.getLottos();
+        System.out.println(lottos.size() + "개를 구매했습니다.");
         for(Lotto lotto : lottos){
             List<Integer> numbers = lotto.getNumbers();
             String result = numbers.stream()
