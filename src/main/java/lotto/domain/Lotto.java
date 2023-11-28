@@ -21,6 +21,18 @@ public class Lotto{
         return Collections.unmodifiableList(numbers);
     }
 
+    public int countMatchingNumbers(Lotto lotto){
+        int count = 0;
+        for(Integer number : this.getNumbers()){
+            for(Integer parameterNumber : lotto.getNumbers()){
+                if(number == parameterNumber){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
 //    public boolean hasMatchedBonusNumbers(BonusNumber bonusNumber){
 //        return numbers.contains(bonusNumber);
 //    }
