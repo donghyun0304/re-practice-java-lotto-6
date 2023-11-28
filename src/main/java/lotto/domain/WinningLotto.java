@@ -17,7 +17,18 @@ public class WinningLotto {
                 BonusNumber.validateNonDuplicateAndCreate(winningLotto, bonusNumber));
     }
 
+    public Rank determineRank(Lotto lotto){
+        int matchedCount = lotto.countMatchingNumbers(winningLotto);
+//        boolean hasBonusNumber = lotto.hasMatchedBonusNumbers(bonusNumber);
+        return Rank.find(matchedCount);
+    }
 
 
-
+    @Override
+    public String toString() {
+        return "WinningLotto{" +
+                "winningLotto=" + winningLotto +
+                ", bonusNumber=" + bonusNumber +
+                '}';
+    }
 }
