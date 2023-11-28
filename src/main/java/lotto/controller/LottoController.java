@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
+import lotto.domain.LottoMachine;
+import lotto.dto.LottosDto;
 import lotto.utils.RandomNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -17,9 +20,20 @@ public class LottoController {
     }
 
     public void run(){
+        LottoMachine lottoMachine = new LottoMachine();
         int price = inputView.inputPrice();
 //        System.out.println("price = " + price);
         List<Integer> numbers = RandomNumberGenerator.createNumbers();
         System.out.println(numbers);
+        List<Lotto> lottos = lottoMachine.createLottos(price);
+//        for(Lotto lotto : lottos){
+//            System.out.println(lotto);
+//        }
+        LottosDto lottosDto = new LottosDto(lottos);
+        outputView.printLottos(lottosDto);
+
+        List<Integer> winningNumbers = inputView.inputWinningNumbers();
+//        System.out.println(winningNumbers);
+
     }
 }

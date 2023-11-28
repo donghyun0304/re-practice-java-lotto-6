@@ -17,7 +17,7 @@ public class RandomNumberGenerator {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_SIZE);
         validateNumberRange(numbers);
         validateNonDuplicate(numbers);
-        sortAscending(numbers);
+//        sortAscending(numbers);
         return numbers;
     }
 
@@ -36,8 +36,8 @@ public class RandomNumberGenerator {
         }
     }
 
-    private static void sortAscending(List<Integer> numbers){
-        Collections.sort(numbers);
-    }
+//    private static void sortAscending(List<Integer> numbers){
+//        Collections.sort(numbers);
+//    }
 
 }
