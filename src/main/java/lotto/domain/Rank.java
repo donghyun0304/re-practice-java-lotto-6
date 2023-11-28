@@ -8,7 +8,8 @@ public enum Rank {
     SECOND_PLACE(5, MATCHED, 30_000_000),
     THIRD_PLACE(5, NOT_MATCHED, 1_500_000),
     FOURTH_PLACE(4, NOT_REQUIRED, 50_000),
-    FIFTH_PLACE(3, NOT_REQUIRED, 5_000);
+    FIFTH_PLACE(3, NOT_REQUIRED, 5_000),
+    NOTHING(0, NOT_REQUIRED, 0);
 
     private int matchedNumber;
     private BonusStatus bonusStatus;
