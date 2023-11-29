@@ -15,4 +15,8 @@ public class Price {
             throw new IllegalArgumentException("[ERROR] 1000 단위가 아닙니다.");
         }
     }
+
+    public int getDividedAmountByUnit(){
+        return amount / UNIT;
+    }
 }
