@@ -6,9 +6,8 @@ import java.util.stream.Collectors;
 
 public class Converter {
 
-    public List<Integer> parseToIntListByDelimiter(final String str, final String delimiter){
+    public List<String> parseToStringListByDelimiter(final String str, final String delimiter){
         return Arrays.stream(str.split(delimiter))
-                .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 }
