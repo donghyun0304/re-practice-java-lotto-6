@@ -1,21 +1,26 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Price;
 import lotto.utils.RandomNumberGenerator;
 import lotto.utils.WinningNumberConverter;
+import lotto.validation.InputValidator;
 
 import java.util.List;
 import java.util.function.Supplier;
 
 public class InputView {
 
-    public int inputPrice(){
+    public Price inputPrice(){
         return getInput(() -> {
             System.out.println("구입금액을 입력해 주세요.");
             String input = Console.readLine();
             // 검증로직 추가
-            return Integer.parseInt(input);
+            InputValidator.validateOnlyNumbers(input);
+            InputValidator.validateOverZeroNumber(input);
+            return new Price(Integer.parseInt(input));
         });
+
     }
 
     public List<Integer> inputWinningNumbers(){
