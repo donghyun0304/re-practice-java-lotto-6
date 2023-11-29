@@ -13,14 +13,16 @@ public class WinningLotto {
     }
 
     public static WinningLotto from(Lotto winningLotto, int bonusNumber){
-        return new WinningLotto(winningLotto,
-                BonusNumber.validateNonDuplicateAndCreate(winningLotto, bonusNumber));
+        return new WinningLotto(
+                winningLotto,
+                BonusNumber.validateNonDuplicateAndCreate(winningLotto, bonusNumber)
+        );
     }
 
     public Rank determineRank(Lotto lotto){
         int matchedCount = lotto.countMatchingNumbers(winningLotto);
-//        boolean hasBonusNumber = lotto.hasMatchedBonusNumbers(bonusNumber);
-        return Rank.find(matchedCount);
+        boolean hasBonusNumber = lotto.hasMatchedBonusNumbers(bonusNumber);
+        return Rank.find(matchedCount, hasBonusNumber);
     }
 
 
