@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import lotto.domain.Lotto;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Convert;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +13,8 @@ public class WinningNumberConverter {
 
     public static Lotto parse(final String numbers) {
         String trimmedNumbers = numbers.trim();
-        List<Integer> lottoNumbers = Arrays.stream(trimmedNumbers.split(NUMBERS_DELIMITER))
+        List<Integer> lottoNumbers = Converter.parseToStringListByDelimiter(trimmedNumbers, NUMBERS_DELIMITER)
+                .stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
         return new Lotto(lottoNumbers);
