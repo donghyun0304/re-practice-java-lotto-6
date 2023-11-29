@@ -25,7 +25,7 @@ public enum Rank {
 
 
 
-    public static Rank find(int matchedNumber, boolean hasBonusNumber){
+    public static Rank find(int matchedNumber){
         Rank findRank = Arrays.stream(Rank.values())
                 .filter(rank -> rank.getMatchedNumber() == matchedNumber && rank.getBonusStatus() == NOT_REQUIRED)
                 .findAny()
@@ -50,5 +50,14 @@ public enum Rank {
 
     public int getWinningAmount() {
         return winningAmount;
+    }
+
+    @Override
+    public String toString() {
+        return "Rank{" +
+                "matchedNumber=" + matchedNumber +
+                ", bonusStatus=" + bonusStatus +
+                ", winningAmount=" + winningAmount +
+                '}';
     }
 }
