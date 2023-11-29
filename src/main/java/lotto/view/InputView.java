@@ -28,6 +28,7 @@ public class InputView {
             System.out.println("당첨 번호를 입력해 주세요.");
             String input = Console.readLine();
             // 검증로직 추가
+            InputValidator.validateIncludeComma(input);
             return WinningNumberConverter.parse(input);
         });
     }

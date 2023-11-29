@@ -18,6 +18,12 @@ public class InputValidator {
             throw new IllegalArgumentException(ErrorMessage.NOT_OVER_ZERO);
         }
     }
+
+    public static void validateIncludeComma(String input){
+        if(RegexPattern.NOT_INCLUDE_COMMA.matches(input)){
+            throw new IllegalArgumentException(ErrorMessage.NOT_INCLUDE_COMMA);
+        }
+    }
     
     
 
