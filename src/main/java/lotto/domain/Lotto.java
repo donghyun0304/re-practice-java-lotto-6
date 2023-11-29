@@ -6,16 +6,37 @@ import java.util.*;
 
 public class Lotto{
 
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
+    private static final int NUMBER_SIZE = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(final List<Integer> numbers) {
         validate(numbers);
+        validateNumberRange(numbers);
+        validateNonDuplicate(numbers);
         this.numbers = new ArrayList<>(numbers);
     }
 
     private void validate(final List<Integer> numbers) {
         if (numbers.size() != LottoConstant.LOTTO_SIZE) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validateNumberRange(final List<Integer> numbers){
+        boolean isValidNumber = numbers.stream()
+                .allMatch(number -> number >= MIN_NUMBER && number <= MAX_NUMBER);
+        if(!isValidNumber){
+            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_NUMBER_RANGE);
+        }
+    }
+
+    private static void validateNonDuplicate(final List<Integer> numbers){
+        Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
+        if(nonDuplicateNumbers.size() != NUMBER_SIZE){
+            throw new IllegalArgumentException(ErrorMessage.HAS_DUPLICATE);
         }
     }
 
