@@ -1,8 +1,10 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constant.Delimiter;
 import lotto.domain.Lotto;
 import lotto.domain.Price;
+import lotto.utils.Converter;
 import lotto.utils.RandomNumberGenerator;
 import lotto.utils.WinningNumberConverter;
 import lotto.validation.InputValidator;
@@ -28,6 +30,8 @@ public class InputView {
             System.out.println("당첨 번호를 입력해 주세요.");
             String input = Console.readLine();
             InputValidator.validateIncludeComma(input);
+            InputValidator.validateOnlyNumbers(
+                    Converter.parseToStringListByDelimiter(input, Delimiter.COMMA));
             return WinningNumberConverter.parse(input);
         });
     }
