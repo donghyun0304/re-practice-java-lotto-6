@@ -1,10 +1,11 @@
 package lotto.domain;
 
+import lotto.constant.LottoConstant;
+
 import java.util.*;
 
 public class Lotto{
 
-    private static final int LOTTO_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(final List<Integer> numbers) {
@@ -13,7 +14,7 @@ public class Lotto{
     }
 
     private void validate(final List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
+        if (numbers.size() != LottoConstant.LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
     }
