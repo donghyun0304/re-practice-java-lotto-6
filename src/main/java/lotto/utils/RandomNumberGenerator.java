@@ -16,8 +16,6 @@ public class RandomNumberGenerator {
     public static List<Integer> createNumbers(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_SIZE);
         validateNumberRange(numbers);
-        validateNonDuplicate(numbers);
-//        sortAscending(numbers);
         return numbers;
     }
 
@@ -28,16 +26,5 @@ public class RandomNumberGenerator {
             throw new IllegalArgumentException("[ERROR] 정해진 범위의 숫자가 아닙니다.");
         }
     }
-
-    private static void validateNonDuplicate(final List<Integer> numbers){
-        Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
-        if(nonDuplicateNumbers.size() != NUMBER_SIZE){
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 존재합니다.");
-        }
-    }
-
-//    private static void sortAscending(List<Integer> numbers){
-//        Collections.sort(numbers);
-//    }
 
 }
