@@ -8,12 +8,12 @@ import java.util.Set;
 public class Lotto{
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(final List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
@@ -23,7 +23,7 @@ public class Lotto{
         return Collections.unmodifiableList(numbers);
     }
 
-    public int countMatchingNumbers(Lotto lotto){
+    public int countMatchingNumbers(final Lotto lotto){
 //        int count = 0;
 //        for(Integer number : this.numbers){
 //            for(Integer parameterNumber : lotto.numbers){
@@ -33,7 +33,7 @@ public class Lotto{
 //            }
 //        }
 //        return count;
-
+//
         Set<Integer> thisNumbers = new HashSet<>(this.numbers);
         Set<Integer> otherNumbers = new HashSet<>(lotto.numbers);
 
@@ -41,9 +41,9 @@ public class Lotto{
         return thisNumbers.size();
     }
 
-//    public boolean hasMatchedBonusNumbers(BonusNumber bonusNumber){
-//        return numbers.contains(bonusNumber);
-//    }
+    public boolean hasMatchedBonusNumbers(final BonusNumber bonusNumber){
+        return numbers.contains(bonusNumber);
+    }
 
     @Override
     public String toString() {
