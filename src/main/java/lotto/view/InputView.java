@@ -16,7 +16,7 @@ public class InputView {
         return getInput(() -> {
             System.out.println("구입금액을 입력해 주세요.");
             String input = Console.readLine();
-            InputValidator.validateOnlyNumbers(input);
+            InputValidator.validateOnlyNumber(input);
             InputValidator.validateOverZeroNumber(input);
             return new Price(Integer.parseInt(input));
         });

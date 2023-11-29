@@ -6,7 +6,7 @@ import lotto.domain.RegexPattern;
 public class InputValidator {
 
     // 숫자로만 이루어져있는지 검증
-    public static void validateOnlyNumbers(String input){
+    public static void validateOnlyNumber(String input){
         if(!RegexPattern.ONLY_NUMBER.matches(input)){
             throw new IllegalArgumentException(ErrorMessage.NOT_ALL_NUMERIC);
         }
