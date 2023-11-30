@@ -7,20 +7,20 @@ public class WinningLotto {
     private final Lotto winningLotto;
     private final BonusNumber bonusNumber;
 
-    private WinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {
+    private WinningLotto(final Lotto winningLotto, final BonusNumber bonusNumber) {
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningLotto from(Lotto winningLotto, int bonusNumber){
+    public static WinningLotto from(final Lotto winningLotto, final int bonusNumber){
         return new WinningLotto(
                 winningLotto,
                 BonusNumber.validateNonDuplicateAndCreate(winningLotto, bonusNumber)
         );
     }
 
-    public Rank determineRank(Lotto lotto){
-        int matchedCount = lotto.countMatchingNumbers(winningLotto);
+    public Rank determineRank(final Lotto lotto){
+        int matchedCount = winningLotto.countMatchingNumbers(lotto);
         boolean hasBonusNumber = lotto.hasMatchedBonusNumbers(bonusNumber);
         return Rank.find(matchedCount, hasBonusNumber);
     }
