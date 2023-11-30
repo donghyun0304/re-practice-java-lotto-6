@@ -23,23 +23,19 @@ public enum Rank {
         this.winningAmount = winningAmount;
     }
 
-    public static Rank find(int matchedNumber, boolean hasBonusNumber){
+    public static Rank find(final int matchedNumber, final boolean hasBonusNumber){
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.matches(matchedNumber, hasBonusNumber))
                 .findAny()
                 .orElse(NOTHING);
     }
 
-    private boolean matches(int matchedNumber, boolean hasBonusNumber){
+    private boolean matches(final int matchedNumber, final boolean hasBonusNumber){
         return (this.matchedNumber == matchedNumber) && (bonusStatus.matches(hasBonusNumber));
     }
 
     public int getMatchedNumber() {
         return matchedNumber;
-    }
-
-    public BonusStatus getBonusStatus() {
-        return bonusStatus;
     }
 
     public int getWinningAmount() {
