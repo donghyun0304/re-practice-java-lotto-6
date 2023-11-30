@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
+import lotto.domain.Result;
 import lotto.dto.LottosDto;
 
 import javax.swing.*;
@@ -24,12 +25,15 @@ public class OutputView {
         }
     }
 
-    public void printLottoResult(Map<Rank, Integer> result) {
-        printRankResult(Rank.FIFTH_PLACE, result.getOrDefault(Rank.FIFTH_PLACE, 0));
-        printRankResult(Rank.FOURTH_PLACE, result.getOrDefault(Rank.FOURTH_PLACE, 0));
-        printThirdPlaceResult(Rank.THIRD_PLACE, result.getOrDefault(Rank.THIRD_PLACE, 0));
-        printRankResult(Rank.SECOND_PLACE, result.getOrDefault(Rank.SECOND_PLACE, 0));
-        printRankResult(Rank.FIRST_PLACE, result.getOrDefault(Rank.FIRST_PLACE, 0));
+    public void printLottoResult(final Result result) {
+        Map<Rank, Integer> lottoResult = result.getResult();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        printRankResult(Rank.FIFTH_PLACE, lottoResult.getOrDefault(Rank.FIFTH_PLACE, 0));
+        printRankResult(Rank.FOURTH_PLACE, lottoResult.getOrDefault(Rank.FOURTH_PLACE, 0));
+        printRankResult(Rank.THIRD_PLACE, lottoResult.getOrDefault(Rank.THIRD_PLACE, 0));
+        printSecondPlaceResult(Rank.SECOND_PLACE, lottoResult.getOrDefault(Rank.SECOND_PLACE, 0));
+        printRankResult(Rank.FIRST_PLACE, lottoResult.getOrDefault(Rank.FIRST_PLACE, 0));
     }
 
     private void printRankResult(Rank rank, int winningSize) {
@@ -37,7 +41,7 @@ public class OutputView {
         System.out.println(rank.getMatchedNumber() + "개 일치 (" + winningAmount + "원) - " + winningSize + "개");
     }
 
-    private void printThirdPlaceResult(Rank rank, int winningSize) {
+    private void printSecondPlaceResult(Rank rank, int winningSize) {
         String winningAmount = String.format("%,d", rank.getWinningAmount());
         System.out.println(rank.getMatchedNumber() + "개 일치, 보너스 볼 일치 (" + winningAmount + "원) - " + winningSize + "개");
     }

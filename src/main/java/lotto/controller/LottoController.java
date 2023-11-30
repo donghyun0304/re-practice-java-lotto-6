@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoMachine;
-import lotto.domain.Rank;
-import lotto.domain.WinningLotto;
+import lotto.domain.*;
 import lotto.dto.LottosDto;
 import lotto.utils.RandomNumberGenerator;
 import lotto.view.InputView;
@@ -26,42 +23,26 @@ public class LottoController {
 
     public void run(){
         LottoMachine lottoMachine = new LottoMachine();
-        int price = inputView.inputPrice();
-//        System.out.println("price = " + price);
-        List<Integer> numbers = RandomNumberGenerator.createNumbers();
-        System.out.println(numbers);
+        Price price = inputView.inputPrice();
         List<Lotto> lottos = lottoMachine.createLottos(price);
-//        for(Lotto lotto : lottos){
-//            System.out.println(lotto);
-//        }
         LottosDto lottosDto = new LottosDto(lottos);
         outputView.printLottos(lottosDto);
 
-        List<Integer> winningNumbers = inputView.inputWinningNumbers();
-        Lotto winningLotto = new Lotto(winningNumbers);
-//        System.out.println(winningNumbers);
-
-        int bonusNumber = inputView.inputBonusNumber();
-//        System.out.println(bonusNumber);
-
-        WinningLotto winningLottoWithBonusNumber = WinningLotto.from(winningLotto, bonusNumber);
-        System.out.println(winningLottoWithBonusNumber);
-
-        List<Rank> ranks = lottoMachine.determineLottoResults(winningLottoWithBonusNumber, lottos);
-
-        for(Rank rank : ranks){
-            System.out.println(rank.getMatchedNumber());
-        }
-
-        Map<Rank, Integer> result = new HashMap<>();
-        for(Rank rank : ranks){
-            result.put(rank, result.getOrDefault(rank, 0) + 1);
-        }
+        Lotto winningNumbers = inputView.inputWinningNumbers();
+        WinningLotto winningLotto = getWinningLottoWhenGetValidBonus(winningNumbers);
+        Result result = lottoMachine.determineLottoResults(winningLotto, lottos);
 
         outputView.printLottoResult(result);
+        outputView.printRateOfReturn(result.calcRateOfReturn());
+    }
 
-        double rateOfReturn = lottoMachine.determineRateOfReturn(ranks);
-        outputView.printRateOfReturn(rateOfReturn);
-
+    private WinningLotto getWinningLottoWhenGetValidBonus(Lotto winningNumbers){
+        try{
+            int bonusNumber = inputView.inputBonusNumber();
+            return WinningLotto.from(winningNumbers, bonusNumber);
+        }catch (IllegalArgumentException e){
+            System.out.println("[ERROR] 로또번호와 중복된 번호가 존재합니다.");
+            return getWinningLottoWhenGetValidBonus(winningNumbers);
+        }
     }
 }

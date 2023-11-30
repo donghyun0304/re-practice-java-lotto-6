@@ -2,43 +2,42 @@ package lotto.domain;
 
 import lotto.utils.RandomNumberGenerator;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class LottoMachine {
 
-    public List<Lotto> createLottos(int price){
-        // price 가격검증 로직 추가
-        int amount = price / 1000;
+    public List<Lotto> createLottos(Price price){
         List<Lotto> lottos = new ArrayList<>();
-        for(int i=0; i<amount; i++){
-            List<Integer> numbers = RandomNumberGenerator.createNumbers();
+        for(int i=0; i<price.getDividedAmountByUnit(); i++){
+            List<Integer> numbers = new ArrayList<>(RandomNumberGenerator.createNumbers());
             Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
         }
         return lottos;
     }
 
-    public List<Rank> determineLottoResults(WinningLotto winningLotto, List<Lotto> lottos){
-        List<Rank> ranks = new ArrayList<>();
+    public Result determineLottoResults(WinningLotto winningLotto, List<Lotto> lottos){
+//        List<Rank> ranks = new ArrayList<>();
+//        for(Lotto lotto : lottos){
+//            ranks.add(winningLotto.determineRank(lotto));
+//        }
+//        return ranks;
+
+        Map<Rank, Integer> result = new EnumMap<>(Rank.class);
         for(Lotto lotto : lottos){
-            ranks.add(winningLotto.determineRank(lotto));
+            Rank rank = winningLotto.determineRank(lotto);
+            result.put(rank, result.getOrDefault(rank, 0) + 1);
         }
-        return ranks;
+        return new Result(result);
     }
 
-    public double determineRateOfReturn(List<Rank> ranks){
-        double sum = ranks.stream()
-                .mapToDouble(Rank::getWinningAmount)
-                .sum();
-
-        double rateOfReturn = sum / (ranks.size() * 1000) * 100;
-        return Math.round(rateOfReturn * 100) / 100.0;
-    }
-
-
-
-
+//    public double determineRateOfReturn(List<Rank> ranks){
+//        double sum = ranks.stream()
+//                .mapToDouble(Rank::getWinningAmount)
+//                .sum();
+//
+//        double rateOfReturn = sum / (ranks.size() * 1000) * 100;
+//        return Math.round(rateOfReturn * 100) / 100.0;
+//    }
 
 }
