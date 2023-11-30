@@ -45,20 +45,9 @@ public class Lotto{
     }
 
     public int countMatchingNumbers(final Lotto lotto){
-//        int count = 0;
-//        for(Integer number : this.numbers){
-//            for(Integer parameterNumber : lotto.numbers){
-//                if(number == parameterNumber){
-//                    count++;
-//                }
-//            }
-//        }
-//        return count;
-//
-        Set<Integer> thisNumbers = new HashSet<>(this.numbers);
-        Set<Integer> otherNumbers = new HashSet<>(lotto.numbers);
-
-        thisNumbers.retainAll(otherNumbers); // 교집합을 구함
+        List<Integer> thisNumbers = new ArrayList<>(this.numbers);
+        List<Integer> otherNumbers = new ArrayList<>(lotto.numbers);
+        thisNumbers.retainAll(otherNumbers);
         return thisNumbers.size();
     }
 
