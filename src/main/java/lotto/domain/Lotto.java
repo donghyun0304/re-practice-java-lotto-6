@@ -51,7 +51,7 @@ public class Lotto{
         return thisNumbers.size();
     }
 
-    public boolean hasMatchedBonusNumbers(final BonusNumber bonusNumber){
+    public boolean hasMatchedBonusNumber(final BonusNumber bonusNumber){
         return numbers.contains(bonusNumber);
     }
 
