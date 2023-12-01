@@ -52,7 +52,8 @@ public class Lotto{
     }
 
     public boolean hasMatchedBonusNumber(final BonusNumber bonusNumber){
-        return numbers.contains(bonusNumber);
+        return numbers.stream()
+                .anyMatch(bonusNumber::isBonusNumber);
     }
 
     @Override
