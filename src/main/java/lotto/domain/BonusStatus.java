@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 public enum BonusStatus {
 
     MATCHED(hasBonusNumber -> hasBonusNumber),
-    NOT_MATCHED(hasBonusNumber -> hasBonusNumber),
+    NOT_MATCHED(hasBonusNumber -> !hasBonusNumber),
     NOT_REQUIRED(hasBonusNumber -> true);
 
     private Predicate<Boolean> predicate;
