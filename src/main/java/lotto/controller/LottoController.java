@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.*;
 import lotto.dto.LottosDto;
 import lotto.utils.RandomNumberGenerator;
+import lotto.utils.RetryUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -48,13 +49,10 @@ public class LottoController {
         outputView.printRateOfReturn(result.calcRateOfReturn());
     }
 
-    private WinningLotto getWinningLottoWhenGetValidBonus(Lotto winningNumbers){
-        try {
+    private WinningLotto getWinningLottoWhenGetValidBonus(Lotto winningNumbers) {
+        return RetryUtil.getInput(() -> {
             int bonusNumber = inputView.inputBonusNumber();
             return WinningLotto.from(winningNumbers, bonusNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 로또번호와 중복된 번호가 존재합니다.");
-            return getWinningLottoWhenGetValidBonus(winningNumbers);
-        }
+        });
     }
 }

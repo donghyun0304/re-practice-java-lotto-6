@@ -6,6 +6,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Price;
 import lotto.utils.Converter;
 import lotto.utils.RandomNumberGenerator;
+import lotto.utils.RetryUtil;
 import lotto.utils.WinningNumberConverter;
 import lotto.validation.InputValidator;
 
@@ -15,7 +16,7 @@ import java.util.function.Supplier;
 public class InputView {
 
     public Price inputPrice(){
-        return getInput(() -> {
+        return RetryUtil.getInput(() -> {
             System.out.println("구입금액을 입력해 주세요.");
             String input = Console.readLine();
             InputValidator.validateOnlyNumber(input);
@@ -26,7 +27,7 @@ public class InputView {
     }
 
     public Lotto inputWinningNumbers(){
-        return getInput(() -> {
+        return RetryUtil.getInput(() -> {
             System.out.println("당첨 번호를 입력해 주세요.");
             String input = Console.readLine();
             InputValidator.validateIncludeComma(input);
@@ -37,7 +38,7 @@ public class InputView {
     }
 
     public int inputBonusNumber(){
-        return getInput(() -> {
+        return RetryUtil.getInput(() -> {
             System.out.println("보너스 번호를 입력해 주세요.");
             String input = Console.readLine();
             InputValidator.validateOnlyNumber(input);
@@ -45,14 +46,5 @@ public class InputView {
         });
     }
 
-    private <T> T getInput(Supplier<T> inputSupplier){
-        while(true){
-            try{
-                return inputSupplier.get();
-            } catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-            }
-        }
-    }
 
 }
